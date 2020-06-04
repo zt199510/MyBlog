@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+   
+  </PropertyGroup>
+  
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>..\Acme.BookStore.Web\bin\Debug\netcoreapp3.1\Acme.BookStore.Domain.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.Identity.Domain" Version="2.8.0" />
+   
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Acme.BookStore.Domain.Shared\Acme.BookStore.Domain.Shared.csproj" />
+  </ItemGroup>
+
+</Project>
