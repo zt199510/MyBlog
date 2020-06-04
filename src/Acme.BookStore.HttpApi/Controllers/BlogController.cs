@@ -1,6 +1,7 @@
 ﻿
 using Acme.BookStore.Application.Blog;
 using Acme.BookStore.Application.Contracts.Blog;
+using Acme.BookStore.Domain.Shared;
 using Acme.ToolKits.Base;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
@@ -12,7 +13,8 @@ namespace Acme.BookStore.HttpApi.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-   public class BlogController: AbpController
+    [ApiExplorerSettings(GroupName = Grouping.GroupName_v1)]//申明swagger 接口类型
+    public class BlogController: AbpController
     {
         private readonly IBlogService _blogService;
 
