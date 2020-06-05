@@ -32,7 +32,7 @@ namespace Acme.BookStore.Hosting
                   .AddJwtBearer(options=> {
                       options.TokenValidationParameters = new TokenValidationParameters
                       {
-
+                          ///123
                           ValidateIssuer = true,
                           ValidateAudience = true,
                           ValidateLifetime = true,
