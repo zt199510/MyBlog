@@ -1,4 +1,5 @@
 ﻿using Acme.BookStore.Domain.Blog;
+using Acme.BookStore.Domain.HotNews;
 using Acme.BookStore.Domain.Wallpaper;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp.Data;
@@ -19,6 +20,8 @@ namespace Acme.BookStore.EntityFrameworkCore
 
         public DbSet<FriendLink> FriendLinks { get; set; }
         public DbSet<Wallpaper> Wallpapers { get; set; }
+
+        public DbSet<HotNews> HotNews { get; set; }
 
         public AcmeBlogDbContext(DbContextOptions<AcmeBlogDbContext> Options):base(Options)
         {
