@@ -1,8 +1,11 @@
-﻿using Microsoft.OpenApi.Models;
+﻿using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using Microsoft.AspNetCore.Mvc.Controllers;
+using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace Acme.Blog.Swagger.Filters
@@ -18,6 +21,11 @@ namespace Acme.Blog.Swagger.Filters
                     Description = "个人博客相关接口",
                     ExternalDocs = new OpenApiExternalDocs { Description = "包含：文章/标签/分类/友链" }
                 },
+                new OpenApiTag
+                {  Name = "Blog",
+                    Description = "博客后台接口",
+                    ExternalDocs = new OpenApiExternalDocs { Description = "包含：文章/标签/分类/友链" }
+                },
                 new OpenApiTag {
                     Name = "HelloWorld",
                     Description = "通用公共接口",
@@ -30,8 +38,19 @@ namespace Acme.Blog.Swagger.Filters
 }
             };
 
+            #region 实现添加自定义描述时过滤不属于同一个分组的API
+
+            var groupName = context.ApiDescriptions.FirstOrDefault().GroupName;
+
+            var apis = context.ApiDescriptions.GetType().GetField("_source", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(context.ApiDescriptions) as IEnumerable<ApiDescription>;
+
+            var controllers = apis.Where(x => x.GroupName != groupName).Select(x => ((ControllerActionDescriptor)x.ActionDescriptor).ControllerName).Distinct();
+
+            swaggerDoc.Tags = tags.Where(x => !controllers.Contains(x.Name)).OrderBy(x => x.Name).ToList();
+
+            #endregion
             // 按照Name升序排序
-            swaggerDoc.Tags = tags.OrderBy(x => x.Name).ToList();
+    
         }
     }
 }

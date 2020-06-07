@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Volo.Abp.AspNetCore.Mvc;
+using static Acme.BookStore.Domain.Shared.AcmeBlogConsts;
 
 namespace Acme.BookStore.HttpApi.Controllers
 {
@@ -23,6 +24,13 @@ namespace Acme.BookStore.HttpApi.Controllers
         public string HelloWorld()
         {
             return _helloWorldService.HelloWorld();
+        }
+
+        [HttpGet]
+        [Route("Exception")]
+        public string Exception()
+        {
+            throw new NotImplementedException("这是一个未实现的异常接口");
         }
     }
 }

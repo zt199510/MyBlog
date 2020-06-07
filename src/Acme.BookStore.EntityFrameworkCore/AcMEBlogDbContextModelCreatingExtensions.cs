@@ -1,5 +1,6 @@
 ﻿using Acme.BookStore.Domain.Blog;
 using Acme.BookStore.Domain.Shared;
+using Acme.BookStore.Domain.Wallpaper;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -58,6 +59,17 @@ namespace Acme.BookStore.EntityFrameworkCore
                 b.HasKey(x => x.Id);
                 b.Property(x => x.Title).HasMaxLength(20).IsRequired();
                 b.Property(x => x.LinkUrl).HasMaxLength(100).IsRequired();
+            });
+
+            builder.Entity<Wallpaper>(b =>
+            {
+                b.ToTable(AcmeBlogConsts.DbTablePrefix + DbTableName.Wallpapers);
+                b.HasKey(x => x.Id);
+                b.Property(x => x.Id).ValueGeneratedOnAdd();
+                b.Property(x => x.Url).HasMaxLength(200).IsRequired();
+                b.Property(x => x.Title).HasMaxLength(100).IsRequired();
+                b.Property(x => x.Type).HasColumnType("int").IsRequired();
+                b.Property(x => x.CreateTime).HasColumnType("datetime").IsRequired();
             });
         }
     }

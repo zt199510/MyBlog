@@ -1,13 +1,10 @@
 ﻿using Acme.BookStore.Application.Authorize;
-using Acme.BookStore.Domain.Shared;
 using Acme.ToolKits.Base;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using Volo.Abp.AspNetCore.Mvc;
+using static Acme.BookStore.Domain.Shared.AcmeBlogConsts;
 
 namespace Acme.BookStore.HttpApi.Controllers
 {
@@ -44,6 +41,18 @@ namespace Acme.BookStore.HttpApi.Controllers
         public async Task<ServiceResult<string>> GetAccessTokenAsync(string code)
         {
             return await _authorizeService.GetAccessTokenAsync(code);
+        }
+
+        /// <summary>
+        /// 登录成功，生成Token
+        /// </summary>
+        /// <param name="access_token"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("token")]
+        public async Task<ServiceResult<string>> GenerateTokenAsync(string access_token)
+        {
+            return await _authorizeService.GenerateTokenAsync(access_token);
         }
     }
 }

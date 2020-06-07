@@ -2,6 +2,8 @@
 using Volo.Abp.Modularity;
 using System;
 using Acme.BookStore.Domain;
+using Microsoft.Extensions.DependencyInjection;
+using Acme.BookStore.Domain.Configurations;
 
 namespace Acme.Application.Caching
 {
@@ -13,7 +15,11 @@ namespace Acme.Application.Caching
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
-            base.ConfigureServices(context);
+            context.Services.AddStackExchangeRedisCache(options =>
+            {
+                options.Configuration = AppSettings.Caching.RedisConnectionString;
+
+            });
         }
     }
 }

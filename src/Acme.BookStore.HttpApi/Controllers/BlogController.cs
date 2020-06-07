@@ -1,17 +1,19 @@
 ﻿
 using Acme.BookStore.Application.Blog;
 using Acme.BookStore.Application.Contracts.Blog;
-using Acme.BookStore.Domain.Shared;
+
 using Acme.ToolKits.Base;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using Volo.Abp.AspNetCore.Mvc;
-
+using static Acme.BookStore.Domain.Shared.AcmeBlogConsts;
 
 namespace Acme.BookStore.HttpApi.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("[controller]")]
     [ApiExplorerSettings(GroupName = Grouping.GroupName_v1)]//申明swagger 接口类型
     public class BlogController: AbpController

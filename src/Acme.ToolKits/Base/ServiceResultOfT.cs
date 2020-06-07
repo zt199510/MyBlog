@@ -19,6 +19,7 @@ namespace Acme.ToolKits.Base
         /// <param name="message"></param>
         public void IsSuccess(T result = null, string message = "")
         {
+            
             Message = message;
             Code = ServiceResultCode.Succeed;
             Result = result;

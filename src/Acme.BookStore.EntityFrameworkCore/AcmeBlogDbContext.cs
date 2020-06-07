@@ -1,4 +1,5 @@
 ﻿using Acme.BookStore.Domain.Blog;
+using Acme.BookStore.Domain.Wallpaper;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp.Data;
 using Volo.Abp.EntityFrameworkCore;
@@ -17,6 +18,7 @@ namespace Acme.BookStore.EntityFrameworkCore
         public DbSet<PostTag> PostTags { get; set; }
 
         public DbSet<FriendLink> FriendLinks { get; set; }
+        public DbSet<Wallpaper> Wallpapers { get; set; }
 
         public AcmeBlogDbContext(DbContextOptions<AcmeBlogDbContext> Options):base(Options)
         {
