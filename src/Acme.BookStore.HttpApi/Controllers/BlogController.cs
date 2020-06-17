@@ -1,5 +1,7 @@
 ﻿
 using Acme.BookStore.Application.Blog;
+using Acme.BookStore.Application.Blog.Impl;
+using Acme.BookStore.Application.Contracts;
 using Acme.BookStore.Application.Contracts.Blog;
 
 using Acme.ToolKits.Base;
@@ -32,7 +34,8 @@ namespace Acme.BookStore.HttpApi.Controllers
         [HttpPost]
         public async Task<ServiceResult<string>> InsertPostAsync([FromBody] PostDto dto)
         {
-            return await _blogService.InsertPostAsync(dto);
+            return null;
+            // return await _blogService.InsertPostAsync(dto);
         }
 
         /// <summary>
@@ -43,7 +46,8 @@ namespace Acme.BookStore.HttpApi.Controllers
         [HttpDelete]
         public async Task<ServiceResult> DeletePostAsync([Required] int id)
         {
-            return await _blogService.DeletePostAsync(id);
+            return null;
+           // return await _blogService.DeletePostAsync(id);
         }
 
         /// <summary>
@@ -55,7 +59,8 @@ namespace Acme.BookStore.HttpApi.Controllers
         [HttpPut]
         public async Task<ServiceResult<string>> UpdatePostAsync([Required] int id, [FromBody] PostDto dto)
         {
-            return await _blogService.UpdatePostAsync(id, dto);
+            return null;
+            // return await _blogService.UpdatePostAsync(id, dto);
         }
 
         /// <summary>
@@ -65,8 +70,21 @@ namespace Acme.BookStore.HttpApi.Controllers
         /// <returns></returns>
         [HttpGet]
         public async Task<ServiceResult<PostDto>> GetPostAsync([Required] int id)
-        { 
-            return await _blogService.GetPostAsync(id);
+        {
+            return null;
+           // return await _blogService.GetPostAsync(id);
+        }
+
+        /// <summary>
+        /// 分页查询文章列表
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("posts")]
+        public async Task<ServiceResult<PagedList<QueryPostDto>>> QueryPostsAsync([FromQuery] PagingInput input)
+        {
+            return await _blogService.QueryPostsAsync(input);
         }
     }
 }

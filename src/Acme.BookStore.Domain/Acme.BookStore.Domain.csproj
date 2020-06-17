@@ -20,4 +20,8 @@
     <ProjectReference Include="..\Acme.BookStore.Domain.Shared\Acme.BookStore.Domain.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Blog\Repositories\" />
+  </ItemGroup>
+
 </Project>
