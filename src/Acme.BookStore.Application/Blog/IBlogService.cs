@@ -9,6 +9,8 @@ namespace Acme.BookStore.Application.Blog.Impl
 {
     public partial interface IBlogService
     {
+
+       
     }
 
 }

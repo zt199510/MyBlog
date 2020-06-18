@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Acme.BookStore.Application.Contracts.Blog
 {
-    public class QueryCategoryDto : CategoryDto
+    public class QueryTagDto : TagDto
     {
         /// <summary>
         /// 总数
