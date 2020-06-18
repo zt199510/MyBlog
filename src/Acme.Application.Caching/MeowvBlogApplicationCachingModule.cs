@@ -4,6 +4,8 @@ using System;
 using Acme.BookStore.Domain;
 using Microsoft.Extensions.DependencyInjection;
 using Acme.BookStore.Domain.Configurations;
+using Microsoft.Extensions.Caching.Redis;
+using Microsoft.Extensions.Caching.Distributed;
 
 namespace Acme.Application.Caching
 {
@@ -20,6 +22,11 @@ namespace Acme.Application.Caching
                 options.Configuration = AppSettings.Caching.RedisConnectionString;
 
             });
+
+            var csredis = new CSRedis.CSRedisClient(AppSettings.Caching.RedisConnectionString);
+            RedisHelper.Initialization(csredis);
+
+            context.Services.AddSingleton<IDistributedCache>(new CSRedisCache(RedisHelper.Instance));
         }
     }
 }

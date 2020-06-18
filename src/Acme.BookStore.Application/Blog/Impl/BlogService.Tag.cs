@@ -64,5 +64,6 @@ namespace Acme.BookStore.Application.Blog.Impl
                 return result;
             });
         }
+
     }
 }

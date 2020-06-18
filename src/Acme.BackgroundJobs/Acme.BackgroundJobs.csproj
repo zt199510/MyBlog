@@ -7,6 +7,10 @@
   </PropertyGroup>
   
   <ItemGroup>
+    <Compile Remove="Jobs\PuppeteerTestJob.cs" />
+  </ItemGroup>
+  
+  <ItemGroup>
     <PackageReference Include="Hangfire.Dashboard.BasicAuthorization" Version="1.0.2" />
     <PackageReference Include="Hangfire.SQLite.Core" Version="1.0.2" />
     <PackageReference Include="HtmlAgilityPack" Version="1.11.23" />
