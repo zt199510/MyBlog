@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Acme.BookStore.Domain.Blog.Repositories
 {
-    class IBlogCacheService
+    interface IBlogCacheService
     {
     }
 }

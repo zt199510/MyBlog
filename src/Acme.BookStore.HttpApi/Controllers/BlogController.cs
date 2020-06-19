@@ -16,7 +16,7 @@ using static Acme.BookStore.Domain.Shared.AcmeBlogConsts;
 namespace Acme.BookStore.HttpApi.Controllers
 {
     [ApiController]
-    [Authorize]
+
     [Route("[controller]")]
     [ApiExplorerSettings(GroupName = Grouping.GroupName_v1)]//申明swagger 接口类型
     public class BlogController: AbpController

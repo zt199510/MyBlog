@@ -21,7 +21,7 @@ namespace Acme.BookStore.Application.Blog.Impl
         /// <returns></returns>
         public async Task<ServiceResult<PagedList<QueryPostForAdminDto>>> QueryPostsForAdminAsync(PagingInput input)
         {
-            await _blogCacheService.RemoveAsync(CachePrefix.Blog_Post);
+         
             var result = new ServiceResult<PagedList<QueryPostForAdminDto>>();
 
             var count = await _postRepository.GetCountAsync();
@@ -79,6 +79,8 @@ namespace Acme.BookStore.Application.Blog.Impl
             });
             await _postTagRepository.BulkInsertAsync(postTags);
 
+
+            await _blogCacheService.RemoveAsync(CachePrefix.Blog_Post);
             result.IsSuccess(ResponseText.INSERT_SUCCESS);
             return result;
         }
@@ -92,7 +94,7 @@ namespace Acme.BookStore.Application.Blog.Impl
         /// <returns></returns>
         public async Task<ServiceResult> UpdatePostAsync(int id, EditPostInput input)
         {
-            await _blogCacheService.RemoveAsync(CachePrefix.Blog_Post);
+          
             var result = new ServiceResult();
 
             var post = await _postRepository.GetAsync(id);
@@ -105,7 +107,7 @@ namespace Acme.BookStore.Application.Blog.Impl
             post.CategoryId = input.CategoryId;
 
             await _postRepository.UpdateAsync(post);
-
+            await _blogCacheService.RemoveAsync(CachePrefix.Blog_Post);
             var tags = await _tagRepository.GetListAsync();
 
             var oldPostTags = from post_tags in await _postTagRepository.GetListAsync()
@@ -152,7 +154,7 @@ namespace Acme.BookStore.Application.Blog.Impl
         /// <returns></returns>
         public async Task<ServiceResult> DeletePostAsync(int id)
         {
-            await _blogCacheService.RemoveAsync(CachePrefix.Blog_Post);
+           
             var result = new ServiceResult();
 
             var post = await _postRepository.GetAsync(id);
@@ -164,7 +166,7 @@ namespace Acme.BookStore.Application.Blog.Impl
 
             await _postRepository.DeleteAsync(id);
             await _postTagRepository.DeleteAsync(x => x.PostId == id);
-
+            await _blogCacheService.RemoveAsync(CachePrefix.Blog_Post);
             result.IsSuccess(ResponseText.DELETE_SUCCESS);
             return result;
         }

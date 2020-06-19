@@ -20,6 +20,7 @@ namespace Acme.BookStore.Application.Blog.Impl
         /// <returns></returns>
         public async Task<ServiceResult<PagedList<QueryPostDto>>> QueryPostsAsync(PagingInput input)
         {
+         
             return await _blogCacheService.QueryPostsAsync(input, async () =>
             {
                 var result = new ServiceResult<PagedList<QueryPostDto>>();
@@ -58,7 +59,7 @@ namespace Acme.BookStore.Application.Blog.Impl
                 var result = new ServiceResult<PostDetailDto>();
 
                 var post = await _postRepository.FindAsync(x => x.Url.Equals(url));
-
+                
                 if (null == post)
                 {
                     result.IsFailed(ResponseText.WHAT_NOT_EXIST.FormatWith("URL", url));

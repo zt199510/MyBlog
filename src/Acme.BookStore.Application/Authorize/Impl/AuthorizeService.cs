@@ -44,7 +44,8 @@ namespace Acme.BookStore.Application.Authorize.Impl
                 return result;
             }
 
-            return await _authorizeCacheService.GenerateTokenAsync(access_token, async()=>{
+            return await _authorizeCacheService.GenerateTokenAsync(access_token, async () =>
+            {
                 var url = $"{GitHubConfig.API_User}?access_token={access_token}";
                 using var client = _httpClient.CreateClient();
                 client.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.14 Safari/537.36 Edg/83.0.478.13");
@@ -93,7 +94,8 @@ namespace Acme.BookStore.Application.Authorize.Impl
                 return await Task.FromResult(result);
 
             });
-           
+
+
         }
 
         public async Task<ServiceResult<string>> GetAccessTokenAsync(string code)

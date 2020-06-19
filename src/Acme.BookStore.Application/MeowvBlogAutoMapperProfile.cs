@@ -23,6 +23,12 @@ namespace Acme.BookStore.Application
             CreateMap<FriendLink, QueryFriendLinkForAdminDto>();
 
             CreateMap<EditFriendLinkInput, FriendLink>().ForMember(x => x.Id, opt => opt.Ignore());
+
+            CreateMap<EditCategoryInput, Category>().ForMember(x => x.Id, opt => opt.Ignore());
+
+            CreateMap<EditTagInput, Tag>().ForMember(x => x.Id, opt => opt.Ignore());
+
+            CreateMap<Post, PostForAdminDto>().ForMember(x => x.Tags, opt => opt.Ignore()); ;
         }
     }
 }
