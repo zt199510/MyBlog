@@ -230,7 +230,7 @@ namespace Acme.BookStore.Application.Blog.Impl
 
             var category = ObjectMapper.Map<EditCategoryInput, Category>(input);
             await _categoryRepository.InsertAsync(category);
-
+            await _blogCacheService.RemoveAsync(CachePrefix.Blog_Category);
             result.IsSuccess(ResponseText.INSERT_SUCCESS);
             return result;
         }
@@ -250,7 +250,7 @@ namespace Acme.BookStore.Application.Blog.Impl
             category.DisplayName = input.DisplayName;
 
             await _categoryRepository.UpdateAsync(category);
-
+            await _blogCacheService.RemoveAsync(CachePrefix.Blog_Category);
             result.IsSuccess(ResponseText.UPDATE_SUCCESS);
             return result;
         }
@@ -272,7 +272,7 @@ namespace Acme.BookStore.Application.Blog.Impl
             }
 
             await _categoryRepository.DeleteAsync(id);
-
+            await _blogCacheService.RemoveAsync(CachePrefix.Blog_Category);
             result.IsSuccess(ResponseText.DELETE_SUCCESS);
             return result;
         }
@@ -309,7 +309,7 @@ namespace Acme.BookStore.Application.Blog.Impl
 
             var tag = ObjectMapper.Map<EditTagInput, Tag>(input);
             await _tagRepository.InsertAsync(tag);
-
+            await _blogCacheService.RemoveAsync(CachePrefix.Blog_Tag);
             result.IsSuccess(ResponseText.INSERT_SUCCESS);
             return result;
         }
@@ -329,7 +329,7 @@ namespace Acme.BookStore.Application.Blog.Impl
             tag.DisplayName = input.DisplayName;
 
             await _tagRepository.UpdateAsync(tag);
-
+            await _blogCacheService.RemoveAsync(CachePrefix.Blog_Tag);
             result.IsSuccess(ResponseText.UPDATE_SUCCESS);
             return result;
         }
@@ -352,7 +352,7 @@ namespace Acme.BookStore.Application.Blog.Impl
 
             await _tagRepository.DeleteAsync(id);
             await _postTagRepository.DeleteAsync(x => x.TagId == id);
-
+            await _blogCacheService.RemoveAsync(CachePrefix.Blog_Tag);
             result.IsSuccess(ResponseText.DELETE_SUCCESS);
             return result;
         }

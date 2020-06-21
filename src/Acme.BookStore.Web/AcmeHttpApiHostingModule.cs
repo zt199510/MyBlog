@@ -75,6 +75,11 @@ namespace Acme.BookStore.Hosting
                           IssuerSigningKey = new SymmetricSecurityKey(AppSettings.JWT.SecurityKey.GetBytes())
                       };
                   });
+            // 跨域配置
+            context.Services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(p => p.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            });
 
             context.Services.AddRouting(options =>
             {

@@ -20,6 +20,17 @@ namespace Acme.BookStore.Application.Blog.Impl
             return await _blogCacheService.QueryCategoriesAsync(async () =>
             {
                 var result = new ServiceResult<IEnumerable<QueryCategoryDto>>();
+                //var result = new ServiceResult<IEnumerable<QueryCategoryForAdminDto>>();
+
+                //var posts = await _postRepository.GetListAsync();
+
+                //var categories = _categoryRepository.GetListAsync().Result.Select(x => new QueryCategoryForAdminDto
+                //{
+                //    Id = x.Id,
+                //    CategoryName = x.CategoryName,
+                //    DisplayName = x.DisplayName,
+                //    Count = posts.Count(p => p.CategoryId == x.Id)
+                //});
 
                 var list = from category in await _categoryRepository.GetListAsync()
                            join posts in await _postRepository.GetListAsync()

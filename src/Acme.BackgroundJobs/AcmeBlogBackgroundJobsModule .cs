@@ -68,9 +68,9 @@ namespace Acme.BackgroundJobs
 
             var service = context.ServiceProvider;
             //// 壁纸数据抓取
-            //service.UseWallpaperJob();
+            service.UseWallpaperJob();
             //// 每日热点数据抓取
-            //service.UseHotNewsJob();
+            service.UseHotNewsJob();
             //service.UseHangfireTest();
         }
     }
