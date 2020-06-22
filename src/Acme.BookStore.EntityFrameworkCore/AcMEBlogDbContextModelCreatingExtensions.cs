@@ -67,7 +67,7 @@ namespace Acme.BookStore.EntityFrameworkCore
                 b.ToTable(AcmeBlogConsts.DbTablePrefix + DbTableName.Wallpapers);
                 b.HasKey(x => x.Id);
                 b.Property(x => x.Id).ValueGeneratedOnAdd();
-                b.Property(x => x.Url).HasMaxLength(200).IsRequired();
+                b.Property(x => x.Url).HasMaxLength(100).IsRequired();
                 b.Property(x => x.Title).HasMaxLength(100).IsRequired();
                 b.Property(x => x.Type).HasColumnType("int").IsRequired();
                 b.Property(x => x.CreateTime).HasColumnType("datetime").IsRequired();

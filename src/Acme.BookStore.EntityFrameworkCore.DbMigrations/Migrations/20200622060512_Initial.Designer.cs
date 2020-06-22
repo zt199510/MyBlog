@@ -9,29 +9,30 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Acme.BookStore.Migrations
 {
     [DbContext(typeof(BookStoreMigrationsDbContext))]
-    [Migration("20200607135158_HotNews")]
-    partial class HotNews
+    [Migration("20200622060512_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.4");
+                .HasAnnotation("ProductVersion", "3.1.4")
+                .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("Acme.BookStore.Domain.Blog.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<string>("CategoryName")
                         .IsRequired()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(50) CHARACTER SET utf8mb4")
                         .HasMaxLength(50);
 
                     b.Property<string>("DisplayName")
                         .IsRequired()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(50) CHARACTER SET utf8mb4")
                         .HasMaxLength(50);
 
                     b.HasKey("Id");
@@ -43,16 +44,16 @@ namespace Acme.BookStore.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<string>("LinkUrl")
                         .IsRequired()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(100) CHARACTER SET utf8mb4")
                         .HasMaxLength(100);
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(20) CHARACTER SET utf8mb4")
                         .HasMaxLength(20);
 
                     b.HasKey("Id");
@@ -64,10 +65,10 @@ namespace Acme.BookStore.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<string>("Author")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(10) CHARACTER SET utf8mb4")
                         .HasMaxLength(10);
 
                     b.Property<int>("CategoryId")
@@ -86,12 +87,12 @@ namespace Acme.BookStore.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(200) CHARACTER SET utf8mb4")
                         .HasMaxLength(200);
 
                     b.Property<string>("Url")
                         .IsRequired()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(100) CHARACTER SET utf8mb4")
                         .HasMaxLength(100);
 
                     b.HasKey("Id");
@@ -103,7 +104,7 @@ namespace Acme.BookStore.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<int>("PostId")
                         .HasColumnType("int");
@@ -120,16 +121,16 @@ namespace Acme.BookStore.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<string>("DisplayName")
                         .IsRequired()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(50) CHARACTER SET utf8mb4")
                         .HasMaxLength(50);
 
                     b.Property<string>("TagName")
                         .IsRequired()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(50) CHARACTER SET utf8mb4")
                         .HasMaxLength(50);
 
                     b.HasKey("Id");
@@ -141,7 +142,7 @@ namespace Acme.BookStore.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("char(36)");
 
                     b.Property<DateTime>("CreateTime")
                         .HasColumnType("datetime");
@@ -151,12 +152,12 @@ namespace Acme.BookStore.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(200) CHARACTER SET utf8mb4")
                         .HasMaxLength(200);
 
                     b.Property<string>("Url")
                         .IsRequired()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(250) CHARACTER SET utf8mb4")
                         .HasMaxLength(250);
 
                     b.HasKey("Id");
@@ -168,14 +169,14 @@ namespace Acme.BookStore.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("char(36)");
 
                     b.Property<DateTime>("CreateTime")
                         .HasColumnType("datetime");
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(100) CHARACTER SET utf8mb4")
                         .HasMaxLength(100);
 
                     b.Property<int>("Type")
@@ -183,8 +184,8 @@ namespace Acme.BookStore.Migrations
 
                     b.Property<string>("Url")
                         .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasMaxLength(200);
+                        .HasColumnType("varchar(100) CHARACTER SET utf8mb4")
+                        .HasMaxLength(100);
 
                     b.HasKey("Id");
 

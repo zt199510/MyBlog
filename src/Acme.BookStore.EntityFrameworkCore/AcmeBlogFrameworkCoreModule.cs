@@ -46,7 +46,7 @@ namespace Acme.BookStore.EntityFrameworkCore
                         options.UseSqlite();
                         break;
                     default:
-                        options.UseSqlite();
+                        options.UseMySQL();
                         break;
                 }
             });

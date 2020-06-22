@@ -7,7 +7,7 @@ using Volo.Abp.EntityFrameworkCore;
 
 namespace Acme.BookStore.EntityFrameworkCore
 {
-    [ConnectionStringName("Sqlite")]
+    [ConnectionStringName("MySql")]
     public class AcmeBlogDbContext : AbpDbContext<AcmeBlogDbContext>
     {
         public DbSet<Post> Posts { get; set; }
